@@ -1,31 +1,73 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-image: linear-gradient(to bottom, #99b7c6, #37576d);
   margin: 0;
   padding: 0;
+  height: 100vh;
+}
+main{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
 }
-
 h1 {
-  color: #333;
+  color: rgb(148, 106, 29);
+  font-family: chuck norris; 
+  font-size: 45px;
 }
-
+h3{
+  font-weight: 500;
+}
+img{
+  max-height: 200px;
+}
 button {
-  margin-top: 10px;
+  margin-top: 30px;
   padding: 8px 16px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #8f2e10;
+  box-shadow: 0px 0px 5px grey;
+  color: #f1b798;
+  font-weight: 600;
   border: none;
   cursor: pointer;
+  height: 40px;
+  width: 140px;
+  border-radius: 15px;
 }
-
 button:hover {
-  background-color: #0056b3;
+  background-color: #957036;
+  font-weight: 600;
+  color: white;
 }
-
-
-
+button:active {
+  transform: translateY(4px);
+}
+.rowDiv{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 500px;
+}
+.jokeContainer{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 50px;
+}
+.jokeDivStyle{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px #37576d;
+  border-radius: 20px;
+  padding: 10px 15px 10px 15px;
+  color: white;
+  margin: 10px 0px 10px 0px;
+}
+.btnDeleteJoke{
+  margin: 5px 0px 10px 0px;
+  background-color: #43270c ;
+  color:  #cca464;
+  box-shadow: 0px 0px 5px #37576d;
+}
