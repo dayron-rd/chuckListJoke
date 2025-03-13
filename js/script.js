@@ -1,5 +1,6 @@
 // APUNTAR A LOS ELEMENTOS DEL DOM
 const btngetJoke = document.getElementById('fetchJoke');
+const btnRecoverJoke = document.getElementById('recoverJokes');
 const jokeContainer = document.getElementById('container');
 
 // DEFINIENDO VARIABLES AUXILIARES
@@ -7,9 +8,23 @@ let counterJoke = localStorage.length;
 let keyJoke = '';
 console.log('Existen ' + counterJoke + ' elementos en el localstorage');
 
+// CONTROL INICIAL DE LA APLICACION
+checkJokesAtLocalStorage();
+
+
+// CHEQUEA SI EXISTEN CHISTES GUARDADOS PARA CONTROLAR EL ESTADO DE LOS BOTONES
+function checkJokesAtLocalStorage(){
+    if(localStorage.length > 0)
+    {
+        btnRecoverJoke.style.display = 'block';
+    } 
+    else{
+        btnRecoverJoke.style.display = 'none';        
+    }
+}
+
 // FUNCION QUE OBTIENE UN CHISTE A TRAVES DE LA API
 function getJokeByFetch(){
-
     fetch('https://api.chucknorris.io/jokes/random')
     .then(response => response.json())
     .then(data => {
@@ -18,6 +33,15 @@ function getJokeByFetch(){
        localStorage.setItem(keyJoke, data.value);
        counterJoke++;
     });
+}
+
+// FUNCION QUE RECUPERA LOS CHISTES ALMACENADOS EN EL LOCALSTORAGE
+function recoverJokes(){
+    for(let i = 0; i <= localStorage.length; i++){
+        let joke = localStorage.key(i);
+        let jokeText = localStorage.getItem(joke);
+        insertJokesAtDom(jokeText);
+    }
 }
 
 // FUNCION QEU INSERTA ELEMENTOS EN EL DOM
@@ -37,3 +61,4 @@ function insertJokesAtDom(joke){
 
 // DEFINIENDO LAS INTERRUPCIONES
 btngetJoke.addEventListener('click', getJokeByFetch);
+btnRecoverJoke.addEventListener('click', recoverJokes);

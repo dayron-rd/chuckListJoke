@@ -33,7 +33,7 @@ button {
   border: none;
   cursor: pointer;
   height: 40px;
-  width: 140px;
+  width: 160px;
   border-radius: 15px;
 }
 button:hover {
@@ -59,7 +59,7 @@ button:active {
 .jokeDivStyle{
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 10px #37576d;
+  box-shadow: 0px 0px 10px #263c4b;
   border-radius: 20px;
   padding: 10px 15px 10px 15px;
   color: white;
@@ -70,4 +70,8 @@ button:active {
   background-color: #43270c ;
   color:  #cca464;
   box-shadow: 0px 0px 5px #37576d;
+}
+.buttonsControl{
+  display: flex;
+  flex-direction: column;
 }
