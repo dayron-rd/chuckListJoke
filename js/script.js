@@ -44,19 +44,35 @@ function recoverJokes(){
     }
 }
 
-// FUNCION QEU INSERTA ELEMENTOS EN EL DOM
+// FUNCION QUE INSERTA ELEMENTOS EN EL DOM
 function insertJokesAtDom(joke){
     const jokeDiv = document.createElement('div');
     jokeDiv.classList = 'jokeDivStyle';
     const jokeText = document.createElement('h3');
     jokeText.textContent = joke;
-    const btnDeleteJoke = document.createElement('button')
+    const btnDeleteJoke = document.createElement('button');
     btnDeleteJoke.innerHTML = "Delete Joke";
     btnDeleteJoke.classList = 'btnDeleteJoke';
+    btnDeleteJoke.addEventListener('click', deleteJoke);
 
     jokeDiv.appendChild(jokeText);
     jokeDiv.appendChild(btnDeleteJoke);
     jokeContainer.appendChild(jokeDiv);
+}
+
+// FUNCION QUE ELIMINA EL CHISTE ASOCIADO AL BOTON ENLAZADO
+function deleteJoke(){
+   /*  console.log(jokeContainer.childNodes[3]); */
+        for(let i = 0; i <= localStorage.length; i++){
+        let joke = localStorage.key(i);
+        let jokeTextLocalStorage = localStorage.getItem(joke);
+        console.log(jokeTextLocalStorage);
+
+
+            localStorage.removeItem(joke);
+            jokeContainer.removeChild(jokeContainer.childNodes[i]);
+            break;
+        }
 }
 
 // DEFINIENDO LAS INTERRUPCIONES
