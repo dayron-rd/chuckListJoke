@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="stylesheet" href="./css/styles.css" />
         <link
             rel="shortcut icon"
@@ -10,6 +11,7 @@
             type="image/x-icon"
         />
         <title>Chuck Norris Jokes</title>
+        <script defer src="./js/script.js"></script>
     </head>
     <body>
         <main>
@@ -19,11 +21,15 @@
                 <div class="buttonsControl">
                     <button id="fetchJoke">Get Joke</button>
                     <button id="recoverJokes">Recover Jokes</button>
+                    <button id="removeAllJokes">Remove all Jokes</button>
                 </div>
             </div>
-            <div class="jokeContainer" id="container"></div>
-
-            <script src="./js/script.js"></script>
+            <div class="jokeContainer" id="container">
+                <!--  Jokes will be displayed here  -->
+            </div>
+            <div class="chartContainer">
+                <canvas id="jokeCanva"></canvas>
+            </div>
         </main>
     </body>
 </html>

@@ -33,7 +33,7 @@ button {
   border: none;
   cursor: pointer;
   height: 40px;
-  width: 160px;
+  width: 200px;
   border-radius: 15px;
 }
 button:hover {
@@ -55,6 +55,7 @@ button:active {
   flex-direction: column;
   width: 80%;
   margin-top: 50px;
+  margin-bottom: 30px;
 }
 .jokeDivStyle{
   display: flex;
@@ -74,4 +75,15 @@ button:active {
 .buttonsControl{
   display: flex;
   flex-direction: column;
+}
+.chartContainer{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 50px;
+}
+#jokeCanva{
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
