@@ -1,7 +1,7 @@
 // APUNTAR A LOS ELEMENTOS DEL DOM
-document.addEventListener('DOMContentLoaded', () => {
-   
-});
+/* document.addEventListener('DOMContentLoaded', () => {
+}); */
+
 const btngetJoke = document.getElementById('fetchJoke');
 const btnRecoverJoke = document.getElementById('recoverJokes');
 const btnRemoveAll = document.getElementById('removeAllJokes');
@@ -13,47 +13,37 @@ let counterJoke = localStorage.length;
 let keyJoke = '';
 let jokeTextLength;
 
-// DEFINIENDO LA GRAFICA
-let jokeData = {
-    labels: [],
-    datasets: [{
-        label: 'Jokes',
-        data: [],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)', 
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1
-    }]
-}
-
-// DEFINIENDO LA GRAFICA
-const jokeChart = new Chart(canvas, {
-    type: 'bar',
-    data: jokeData,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-jokeChart.id = 'jokeCanva';
-
-// ACTUALIZACION DE LA GRAFICA
-function updateChart(data){
-
-    jokeChart.labels = keyJoke;
-    jokeChart.data.datasets[0].data = data.value.length;
-    console.log(jokeChart.data.datasets[0].data);
-    console.log(jokeChart.data);
-    jokeChart.update();
-}
-
-
-
 // CONTROL INICIAL DE LA APLICACION
 checkJokesAtLocalStorage();
 
+// DEFINIENDO DOATOS DE LA GRAFICA
+    let jokeData = {
+        labels: [],
+        datasets: [{
+            label: 'Jokes',
+            data: [],
+            backgroundColor: 'rgba(36, 27, 29, 0.2)', 
+            borderColor: 'rgba(36, 27, 29, 1)',
+            borderWidth: 1
+        }]
+    }
+    
+// DEFINIENDO LA GRAFICA
+    let jokeChart = new Chart(canvas, {
+        type: 'bar',
+        data: jokeData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    jokeChart.id = 'jokeCanva';
+      
+    console.log(jokeChart.data.datasets[0].data[0]);
+    //jokeChart.destroy();
 
 // CHEQUEA SI EXISTEN CHISTES GUARDADOS PARA CONTROLAR EL ESTADO DE LOS BOTONES
 function checkJokesAtLocalStorage(){
@@ -79,7 +69,10 @@ function getJokeByFetch(){
        localStorage.setItem(keyJoke, data.value);
        counterJoke++;
        checkJokesAtLocalStorage();
-       updateChart(data);
+         jokeData.labels.push(keyJoke);
+         jokeData.datasets[0].data.push(data.value.length);
+         jokeChart.update();
+
     });
 }
 
@@ -113,9 +106,24 @@ function deleteJoke(){
         for(let i = 0; i <= localStorage.length; i++){
         let joke = localStorage.key(i);
         let jokeTextLocalStorage = localStorage.getItem(joke);
-        console.log(jokeTextLocalStorage);
+        //console.log(jokeTextLocalStorage);
             localStorage.removeItem(joke);
             jokeContainer.removeChild(jokeContainer.childNodes[i]);
+
+
+            //REVISAR ESTO
+
+           /*  let control = jokeData.datasets[0].data[i];
+            console.log(control);
+            jokeData.datasets[0].data.splice(0,i);
+            control = jokeData.datasets[0].data;
+            console.log(control); */
+
+
+
+
+
+            jokeChart.update();
             break;
         }
         checkJokesAtLocalStorage();
@@ -131,11 +139,6 @@ function removeAll(){
     counterJoke = 0;
 
 }
-
-
-
-
-
 
 // DEFINIENDO LAS INTERRUPCIONES
 btngetJoke.addEventListener('click', getJokeByFetch);
