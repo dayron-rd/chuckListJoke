@@ -42,7 +42,7 @@ checkJokesAtLocalStorage();
     });
     jokeChart.id = 'jokeCanva';
       
-    console.log(jokeChart.data.datasets[0].data[0]);
+    //console.log(jokeChart.data.datasets[0].data[0]);
     //jokeChart.destroy();
 
 // CHEQUEA SI EXISTEN CHISTES GUARDADOS PARA CONTROLAR EL ESTADO DE LOS BOTONES
@@ -95,9 +95,9 @@ function insertJokesAtDom(joke){
     btnDeleteJoke.innerHTML = "Delete Joke";
     btnDeleteJoke.classList = 'btnDeleteJoke';
     btnDeleteJoke.addEventListener('click', deleteJoke);
-
     jokeDiv.appendChild(jokeText);
     jokeDiv.appendChild(btnDeleteJoke);
+    jokeDiv.id = counterJoke;
     jokeContainer.appendChild(jokeDiv);
 }
 
@@ -106,23 +106,17 @@ function deleteJoke(){
         for(let i = 0; i <= localStorage.length; i++){
         let joke = localStorage.key(i);
         let jokeTextLocalStorage = localStorage.getItem(joke);
-        //console.log(jokeTextLocalStorage);
+        if(jokeTextLocalStorage == this.parentElement.firstChild.textContent){
             localStorage.removeItem(joke);
-            jokeContainer.removeChild(jokeContainer.childNodes[i]);
+            console.log(jokeContainer.childNodes[i]);
+            const node = document.getElementById(i);
+            console.log(node);
+            jokeContainer.removeChild(node);
 
-
-            //REVISAR ESTO
-
-           /*  let control = jokeData.datasets[0].data[i];
-            console.log(control);
+            //ELIMINAR EL CHISTE ESPECIFICO DE LA GRAFICA
+            let control = jokeData.datasets[0].data[i];
             jokeData.datasets[0].data.splice(0,i);
             control = jokeData.datasets[0].data;
-            console.log(control); */
-
-
-
-
-
             jokeChart.update();
             break;
         }
@@ -130,13 +124,16 @@ function deleteJoke(){
         if(localStorage.length == 0){
             counterJoke = 0;
         }
-}
+}}
 
 // FUNCION QUE ELIMINA TODOS LOS CHISTES
 function removeAll(){
     localStorage.clear();
     jokeContainer.innerHTML = "";;
     counterJoke = 0;
+    jokeData.labels = [];
+    jokeData.datasets[0].data = [];
+    jokeChart.update();
 
 }
 
